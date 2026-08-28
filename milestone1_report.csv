@@ -1,5 +1,0 @@
-source,origin,input_text,processed_text,sentiment_label,compound_score,positive_score,negative_score,neutral_score
-text_input,direct_input,im visiting my sister this weekend so i took a leave this saturday,im visiting sister weekend took leave saturday,Positive,0.0717,0.113,0.0,0.887
-csv_file,milestone1_report.csv:row2,text_input,text_input,Neutral,0.0,0.0,0.0,1.0
-csv_file,milestone1_report.csv:row3,text_input,text_input,Neutral,0.0,0.0,0.0,1.0
-csv_file,milestone1_report.csv:row4,text_input,text_input,Neutral,0.0,0.0,0.0,1.0

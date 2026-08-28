@@ -1,4 +1,0 @@
-source,origin,input_text,processed_text,sentiment_label,compound_score,positive_score,negative_score,neutral_score
-txt_file,exp.txt,"I am tired
-I feel motivated working on the current project
-I haven't slept in days but I want to finish this deadline",tired feel motivated working current project n't slept day want finish deadline,Positive,0.128,0.161,0.091,0.748

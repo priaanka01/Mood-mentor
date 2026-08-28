@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment/secrets
+.env
+.env.*
+
+# Generated Milestone 1 reports
+aug_*.csv
+aug_*.json
+milestone1_report.csv
+milestone1_report.json
+new_txt.csv
+new_txt.json
+
+# Temporary/test outputs
+text_*.csv
+text_*.json
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
