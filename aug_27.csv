@@ -1,0 +1,11 @@
+source,origin,input_text,processed_text,sentiment_label,compound_score,positive_score,negative_score,neutral_score
+csv_file,sample_corpus.csv:row2,I've been feeling really overwhelmed with my workload this week,'ve feeling really overwhelmed workload week,Positive,0.2484,0.272,0.0,0.728
+csv_file,sample_corpus.csv:row3,Great team sync today,great team sync today,Positive,0.6249,0.577,0.0,0.423
+csv_file,sample_corpus.csv:row4,Honestly just exhausted,honestly exhausted,Positive,0.128,0.462,0.385,0.154
+csv_file,sample_corpus.csv:row5,I appreciate the flexibility my manager gave me to work from home when I wasn't feeling well.,appreciate flexibility manager gave work home n't feeling well,Positive,0.4434,0.264,0.165,0.57
+csv_file,sample_corpus.csv:row6,The new project deadline is stressing me out,new project deadline stressing,Negative,-0.3612,0.0,0.263,0.737
+csv_file,sample_corpus.csv:row7,Had a good lunch break with colleagues,good lunch break colleague,Positive,0.4404,0.367,0.0,0.633
+csv_file,sample_corpus.csv:row8,I feel completely burnt out and unmotivated to even start my tasks today.,feel completely burnt unmotivated even start task today,Negative,-0.34,0.0,0.179,0.821
+csv_file,sample_corpus.csv:row9,Thankful for the wellness day off,thankful wellness day,Positive,0.765,0.623,0.0,0.377
+csv_file,sample_corpus.csv:row10,Nobody checks in on how we're actually doing,nobody check 're actually,Neutral,0.0,0.0,0.0,1.0
+csv_file,sample_corpus.csv:row11,Proud of how the team pulled together this sprint,proud team pulled together sprint,Positive,0.4767,0.279,0.0,0.721

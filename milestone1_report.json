@@ -1,0 +1,59 @@
+{
+  "summary": {
+    "num_samples_submitted": 4,
+    "num_samples_analyzed": 4,
+    "num_samples_skipped_invalid": 0,
+    "positive_count": 1,
+    "negative_count": 0,
+    "neutral_count": 3,
+    "positive_pct": 25.0,
+    "negative_pct": 0.0,
+    "neutral_pct": 75.0
+  },
+  "rows": [
+    {
+      "source": "text_input",
+      "origin": "direct_input",
+      "input_text": "im visiting my sister this weekend so i took a leave this saturday",
+      "processed_text": "im visiting sister weekend took leave saturday",
+      "sentiment_label": "Positive",
+      "compound_score": 0.0717,
+      "positive_score": 0.113,
+      "negative_score": 0.0,
+      "neutral_score": 0.887
+    },
+    {
+      "source": "csv_file",
+      "origin": "milestone1_report.csv:row2",
+      "input_text": "text_input",
+      "processed_text": "text_input",
+      "sentiment_label": "Neutral",
+      "compound_score": 0.0,
+      "positive_score": 0.0,
+      "negative_score": 0.0,
+      "neutral_score": 1.0
+    },
+    {
+      "source": "csv_file",
+      "origin": "milestone1_report.csv:row3",
+      "input_text": "text_input",
+      "processed_text": "text_input",
+      "sentiment_label": "Neutral",
+      "compound_score": 0.0,
+      "positive_score": 0.0,
+      "negative_score": 0.0,
+      "neutral_score": 1.0
+    },
+    {
+      "source": "csv_file",
+      "origin": "milestone1_report.csv:row4",
+      "input_text": "text_input",
+      "processed_text": "text_input",
+      "sentiment_label": "Neutral",
+      "compound_score": 0.0,
+      "positive_score": 0.0,
+      "negative_score": 0.0,
+      "neutral_score": 1.0
+    }
+  ]
+}
