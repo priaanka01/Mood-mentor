@@ -1,31 +1,45 @@
 """
-Mood Mentor - Milestone 1 Interactive Session
-=================================================
-Task 1's flow explicitly calls for:
-  Create/enter text input -> Upload .txt file -> Upload .csv file ->
-  Read input data -> Validate input format -> Pass valid text to
-  preprocessing -> Handle empty or invalid inputs -> Verify all
-  supported input methods work correctly.
+Mood Mentor - Milestone 1 Entry Point
+=========================================
+Single consolidated entry point (previously split across main.py's
+one-shot CLI and this file's interactive session — merged here to
+remove the duplicated save/print/report logic between them).
 
-That's an interactive workflow, not a one-shot CLI argument. This
-script runs a live menu loop: you feed it text/files as you go,
-invalid input is caught and you're re-prompted (never crashes the
-session), and every valid entry is accumulated into one running
-session. At the end you generate ONE Milestone 1 report covering
-everything you entered, saved to disk.
+Two modes, one script:
+
+  1. INTERACTIVE (default, no arguments): Task 1's flow explicitly
+     calls for enter text -> upload .txt -> upload .csv -> validate ->
+     preprocess, as a live workflow rather than a one-shot CLI arg.
+     This runs a menu loop: feed it text/files as you go, invalid
+     input is caught and you're re-prompted (never crashes the
+     session), and every valid entry accumulates into one running
+     session. Generate ONE consolidated report on demand.
+
+  2. ONE-SHOT (pass --text / --txt / --csv): scripted/automatable run
+     for a single input — analyzes it and writes the report
+     immediately, no menu. Useful for CI or quick one-off checks.
 
 Usage:
-    python3 run_milestone1.py
+    python3 milestone1.py                          # interactive session
+    python3 milestone1.py --text "I love this!"    # one-shot
+    python3 milestone1.py --txt path/to/file.txt
+    python3 milestone1.py --csv sample_corpus.csv --column review --out my_report
 """
 
+import argparse
 import os
 import sys
 
 from text_ingestion import (
     ingest_text_input, ingest_txt_file, ingest_csv_file, IngestionError,
 )
-from pipeline import run_pipeline_on_record
-from report_generator import build_report, save_report_csv, save_report_json
+from pipeline import (
+    run_pipeline_on_record,
+    run_pipeline_from_text,
+    run_pipeline_from_txt_file,
+    run_pipeline_from_csv_file,
+)
+from report_generator import build_report, save_report, print_report_summary
 
 
 def print_menu():
@@ -113,23 +127,8 @@ def handle_generate_report():
     out_name = input("\nOutput filename (no extension, default 'milestone1_report'): ").strip()
     out_name = out_name if out_name else "milestone1_report"
 
-    csv_path = f"{out_name}.csv"
-    json_path = f"{out_name}.json"
-    save_report_csv(report, csv_path)
-    save_report_json(report, json_path)
-
-    s = report["summary"]
-    print("\n" + "=" * 55)
-    print(" MILESTONE 1 REPORT GENERATED")
-    print("=" * 55)
-    print(f" Samples analyzed : {s['num_samples_analyzed']}")
-    print(f" Positive         : {s['positive_count']} ({s['positive_pct']}%)")
-    print(f" Negative         : {s['negative_count']} ({s['negative_pct']}%)")
-    print(f" Neutral          : {s['neutral_count']} ({s['neutral_pct']}%)")
-    print("-" * 55)
-    print(f" Saved to: {os.path.abspath(csv_path)}")
-    print(f"           {os.path.abspath(json_path)}")
-    print("=" * 55)
+    csv_path, json_path = save_report(report, out_name)
+    print_report_summary(report, csv_path, json_path, header="MILESTONE 1 REPORT GENERATED")
     print(" Open the .csv in Excel, or download it from your file")
     print(" explorer at the path above — that's your Milestone 1")
     print(" deliverable.")
@@ -138,7 +137,7 @@ def handle_generate_report():
 SESSION_ROWS = []
 
 
-def main():
+def run_interactive():
     while True:
         print_menu()
         choice = input(" Choose an option (1-5): ").strip()
@@ -156,6 +155,50 @@ def main():
             sys.exit(0)
         else:
             print("\n[Invalid menu choice] Please enter a number from 1-5.")
+
+
+def run_one_shot(args):
+    """Former main.py behavior: single scripted run, report written immediately."""
+    try:
+        if args.text:
+            result = run_pipeline_from_text(args.text)
+            rows = [result.as_dict()]
+        elif args.txt:
+            result = run_pipeline_from_txt_file(args.txt)
+            rows = [result.as_dict()]
+        else:
+            results = run_pipeline_from_csv_file(args.csv, text_column=args.column)
+            rows = [r.as_dict() for r in results]
+    except IngestionError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+
+    report = build_report(rows)
+    csv_path, json_path = save_report(report, args.out)
+    print_report_summary(report, csv_path, json_path, header="MOOD MENTOR - ONE-SHOT RUN")
+
+    for r in rows:
+        text_preview = r["input_text"][:60]
+        print(f"  {r['sentiment_label']:9s} | compound={r['compound_score']:+.3f} | {text_preview}")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Mood Mentor Milestone 1 — interactive session by default, "
+                     "or pass --text/--txt/--csv for a scripted one-shot run."
+    )
+    group = parser.add_mutually_exclusive_group(required=False)
+    group.add_argument("--text", help="Analyze a single string of text (one-shot mode)")
+    group.add_argument("--txt", help="Path to a .txt file to analyze (one-shot mode)")
+    group.add_argument("--csv", help="Path to a .csv file to analyze (one-shot mode)")
+    parser.add_argument("--column", default=None, help="Column name to read text from (for --csv)")
+    parser.add_argument("--out", default="milestone1_report", help="Output filename prefix (one-shot mode)")
+    args = parser.parse_args()
+
+    if args.text or args.txt or args.csv:
+        run_one_shot(args)
+    else:
+        run_interactive()
 
 
 if __name__ == "__main__":

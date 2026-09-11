@@ -2,23 +2,31 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyo
+*.pyd
 
 # Virtual environments
 .venv/
 venv/
 env/
+ENV/
 
 # Environment/secrets
 .env
 .env.*
 
-# Generated Milestone 1 reports
+# Generated reports
 aug_*.csv
 aug_*.json
 milestone1_report.csv
 milestone1_report.json
+milestone2_final_report.csv
+milestone2_final_report.json
+task10_validation_metrics.json
 new_txt.csv
 new_txt.json
+*_report.csv
+*_report.json
 
 # Temporary/test outputs
 text_*.csv
@@ -31,3 +39,25 @@ text_*.json
 # OS files
 .DS_Store
 Thumbs.db
+
+# Distribution/build files
+.dist/
+dist/
+build/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Trained model files
+bert_emotion_model/
+distilbert_emotion_model/
+multilabel_emotion_model/
+
+# Training checkpoints
+bert_emotion_checkpoints/
+distilbert_emotion_checkpoints/
+
+# Datasets / downloaded data
+goemotions_data/
+ISEAR_spellchecked.csv
