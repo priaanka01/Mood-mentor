@@ -1,0 +1,13 @@
+content_id,title,description,content_type,emotions,intensity_min,intensity_max,tags
+W01,Deep Breathing,Five minute paced breathing exercise for emotional regulation,exercise,"Fear,Anxiety",0.0,1.0,"breathing,calm,stress"
+W02,Grounding 5-4-3-2-1,Grounding exercise that redirects attention to the present moment,exercise,"Fear,Sadness",0.35,1.0,"grounding,stress,calm"
+W03,Positive Reflection,Short gratitude and positive reflection activity,activity,"Joy,Surprise",0.0,0.65,"gratitude,positive,motivation"
+W04,Healthy Anger Release,Safe journaling and pause technique for managing anger,exercise,"Anger,Disgust",0.35,1.0,"anger,journaling,regulation"
+W05,Calm Music,Relaxing music session for reducing emotional arousal,media,"Fear,Sadness,Anger",0.2,0.9,"music,relaxation,calm"
+W06,Mindful Walk,A short mindful walking activity focusing on surroundings,exercise,"Sadness,Fear,Anger",0.2,0.85,"mindfulness,walk,stress"
+W07,Achievement Journal,Write three things you handled well today,activity,"Joy,Surprise",0.0,0.75,"confidence,reflection,positive"
+W08,Self Compassion,Guided self-compassion reflection for difficult moments,reading,"Sadness,Fear",0.35,1.0,"self-compassion,reflection"
+W09,Focus Reset,Ten minute break-and-reset routine for study pressure,exercise,"Fear,Anger,Sadness",0.3,1.0,"focus,study,stress"
+W10,Creative Expression,Use drawing or free writing to express difficult feelings,activity,"Sadness,Anger,Disgust",0.25,0.95,"creative,journaling,expression"
+W11,Social Connection,Reach out to a trusted friend for a short supportive conversation,activity,"Sadness,Fear",0.3,1.0,"support,connection"
+W12,Celebration Playlist,Create a short playlist for positive energy and motivation,media,"Joy,Surprise",0.0,0.8,"music,energy,motivation"

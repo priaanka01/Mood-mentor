@@ -1,0 +1,9 @@
+# Existing Milestone 1/2 dependencies
+torch
+transformers
+scikit-learn
+pandas
+nltk
+
+# Milestone 3 Task 5
+sentence-transformers
